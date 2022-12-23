@@ -1,0 +1,156 @@
+# grey: #595959
+# tan: #A57F60
+# green: #45462A
+
+format = """
+$username$hostname[ in](#A57F60)$directory
+[ $git_branch$git_commit$git_state$git_status\
+$aws\
+$azure\
+$c\
+$container\
+$golang\
+$kubernetes\
+$nodejs\
+$package\
+$perl\
+$python\
+$rust\
+$vagrant](#595959 bold)
+$time
+$character"""
+
+# Swap the prompt character
+[character]
+success_symbol = "[ ✔ ~⮞](green bold)"
+error_symbol = "[ ✗ ~⮞](red bold)"
+
+# User
+[username]
+style_root = "red bold"
+style_user = "green"
+format = "[  $user ]($style bold)"
+disabled = false
+show_always = true
+
+# Directory
+[directory]
+truncation_length = 3
+style = "#A57F60"
+read_only = "🔒"
+read_only_style = "bold red"
+format = "[  $path ]($style bold)[$read_only]($read_only_style)"
+
+# Git
+[git_branch]
+style = "bold #A57F60"
+symbol = "[  ]($style)"
+truncation_length = 10
+truncation_symbol = ""
+
+[git_commit]
+style = "#A57F60"
+commit_hash_length = 4
+tag_symbol = "[🔖 ]($style)"
+
+[git_state]
+format = '[\($state( $progress_current of $progress_total)\)]($style) '
+cherry_pick = "[🍒 PICKING](bold green)"
+
+[git_status]
+conflicted = "🏴‍☠"
+ahead = "🏎💨"
+behind = "😰"
+diverged = "😵"
+untracked = "🤷‍"
+stashed = "📦"
+modified = "📝"
+staged = '[++\($count\)](bold #A57F60)'
+renamed = "👅"
+deleted = "🗑️"
+
+# Host OS
+[hostname]
+ssh_only = false
+style = "#A57F60"
+format =  "[ $hostname]($style bold)"
+trim_at = ".companyname.com"
+disabled = false
+
+# Time
+[time]
+style = "#A57F60"
+disabled = false
+use_12hr = true
+format = '[ $time ]($style bold)'
+time_format = "%a %D %I:%M %P"
+utc_time_offset = "local"
+
+# aws
+[aws]
+style = "#A57F60 bold"
+symbol = "  "
+format = "on [$symbol$profile]($style) "
+
+# azure
+[azure]
+disabled = false
+format = "on [$symbol($subscription)]($style) "
+symbol = "ﴃ "
+style = "#A57F60 bold"
+
+# c
+[c]
+style="bold #A57F60"
+format = "via [$name $version]($style)"
+
+# container
+[container]
+style="bold #A57F60"
+format = '[$symbol \[$name\]]($style) '
+
+# go
+[golang]
+format = "via [ $version](bold #A57F60) "
+
+# k8s
+[kubernetes]
+style="bold #A57F60"
+format = 'on [⎈ ($user on )($cluster in )$context \($namespace\)]($style) '
+disabled = false
+[kubernetes.context_aliases]
+"dev.local.cluster.k8s" = "dev"
+".*/openshift-cluster/.*" = "openshift"
+"gke_.*_(?P<var_cluster>[\\w-]+)" = "gke-$var_cluster"
+[kubernetes.user_aliases]
+"dev.local.cluster.k8s" = "dev"
+"root/.*" = "root"
+
+# node
+[nodejs]
+style="bold #A57F60"
+format = "via [ $version]($style) "
+
+# package
+[package]
+format = "via [ $version](bold #A57F60) "
+
+# perl
+[perl]
+format = "via [ $version](bold #A57F60) "
+
+# Python
+[python]
+symbol = " "
+style="bold #A57F60"
+pyenv_version_name = true
+
+#rust
+[rust]
+format = "via [ $version](bold #A57F60)"
+
+# vagrant
+[vagrant]
+format = "via [⍱ $version](bold #A57F60) "
+
+# ⎈ ⏲     ☑ ☒ ☠ ✔ ✗ ▤ ▓ ░ 🙽 🙼 ◢ ◣ 
